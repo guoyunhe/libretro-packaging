@@ -1,0 +1,8 @@
+libretro-beetle-pce
+libretro-bsnes-cplusplus98
+libretro-cannonball
+libretro-citra-canary
+libretro-fbalpha-neogeo
+libretro-fbalpha2012-cps1
+libretro-fbalpha2012-cps2
+libretro-fbalpha2012-cps3

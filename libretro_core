@@ -1,0 +1,99 @@
+#!/usr/bin/perl
+
+use strict;
+use LWP::Simple;
+use Data::Dumper qw(Dumper);
+use File::Slurp;
+
+my $spec_template = read_file 'libretro-template.spec';
+my $service_template = read_file 'service.xml';
+my $blacklist = read_file 'blacklist.txt';
+my $contents = get 'https://raw.githubusercontent.com/libretro/libretro-super/master/recipes/linux/cores-linux-x64-generic';
+
+my @cores = split /\n/, $contents;
+
+system 'rm -rf cores';
+system 'mkdir -p cores';
+
+foreach (@cores) {
+    my @params = split / /, $_;
+
+    my $core_name     = shift @params;
+    my $package_name  = shift @params;
+    my $git_url       = shift @params;
+    my $git_branch    = shift @params;
+    my $enabled       = shift @params;
+    my $command       = shift @params;
+    my $makefile      = shift @params;
+    my $subdir        = shift @params;
+    my $build_args    = join ' ', @params;
+
+    if ($enabled ne 'YES') {
+        next;
+    }
+
+    $package_name =~ s/_/-/g;
+
+    if (index($blacklist, "$package_name\n") != -1) {
+        next;
+    }
+
+    system "mkdir -p cores/$package_name";
+
+    my $spec = $spec_template;
+    my $service = $service_template;
+    my $build_requires;
+    my $build_script = '';
+    my $build_dir = '';
+    my $lib_filename = $core_name . '_libretro.so';
+
+    if ($command eq 'CMAKE') {
+        $build_requires = 'BuildRequires:  cmake';
+
+        if ($subdir ne '.') {
+            $build_script .= "cd $subdir\n";
+        }
+        $build_script .= "mkdir build\n cd build\ncmake ..";
+        if ($build_args) {
+            $build_script .= " $build_args";
+        }
+        $build_script .= "\n";
+        $build_script .= "make";
+
+        if ($subdir ne '.') {
+            $build_dir = "$subdir/build/";
+        } else {
+            $build_dir = "build/";
+        }
+    } else {
+        $build_requires = 'BuildRequires:  make';
+
+        if ($subdir ne '.') {
+            $build_script .= "cd $subdir\n";
+        }
+        $build_script .= "make";
+        if ($makefile ne 'Makefile') {
+            $build_script .= " -f $makefile";
+        }
+        if ($build_args) {
+            $build_script .= " $build_args";
+        }
+
+        if ($subdir ne '.') {
+            $build_dir = "$subdir/";
+        }
+    }
+
+    $service =~ s/<package_name>/$package_name/g;
+    $service =~ s/<git_url>/$git_url/g;
+    $service =~ s/<git_branch>/$git_branch/g;
+
+    $spec =~ s/<package_name>/$package_name/g;
+    $spec =~ s/<core_name>/$core_name/g;
+    $spec =~ s/<build_requires>/$build_requires/g;
+    $spec =~ s/<build_script>/$build_script/g;
+    $spec =~ s/<build_dir>/$build_dir/g;
+
+    write_file "cores/$package_name/_service", $service;
+    write_file "cores/$package_name/$package_name.spec", $spec;
+}
