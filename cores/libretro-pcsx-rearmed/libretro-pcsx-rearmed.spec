@@ -34,7 +34,7 @@ pcsx_rearmed libretro core
 %setup -q
 
 %build
-make -f Makefile.libretro USE_DYNAREC=0
+make -f Makefile.libretro DYNAREC=lightrec
 
 %install
 mkdir -p %{buildroot}%{_libdir}/libretro

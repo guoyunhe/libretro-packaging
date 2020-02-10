@@ -34,7 +34,7 @@ parallel_n64 libretro core
 %setup -q
 
 %build
-make WITH_DYNAREC=x86_64 HAVE_PARALLEL_RSP=1 WANT_LLVM_OVERRIDE=1 LLVM_VERSION=8 HAVE_THR_AL=1
+make WITH_DYNAREC=x86_64 HAVE_PARALLEL_RSP=1 HAVE_THR_AL=1
 
 %install
 mkdir -p %{buildroot}%{_libdir}/libretro
