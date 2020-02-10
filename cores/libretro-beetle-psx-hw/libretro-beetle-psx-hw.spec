@@ -34,7 +34,7 @@ mednafen_psx_hw libretro core
 %setup -q
 
 %build
-make HAVE_HW=1
+make HAVE_HW=1 HAVE_LIGHTREC=1
 
 %install
 mkdir -p %{buildroot}%{_libdir}/libretro

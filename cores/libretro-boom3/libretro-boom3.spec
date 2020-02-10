@@ -1,5 +1,5 @@
 #
-# spec file for package libretro-fmsx
+# spec file for package libretro-boom3
 #
 # Copyright (c) 2020 SUSE LLC
 #
@@ -16,10 +16,10 @@
 #
 
 
-Name:           libretro-fmsx
+Name:           libretro-boom3
 Version:        1.0
 Release:        0
-Summary:        fmsx libretro core
+Summary:        boom3 libretro core
 License:        GPL-3.0
 URL:            http://www.retroarch.com
 Source:         %{name}-%{version}.tar.xz
@@ -28,20 +28,21 @@ BuildRequires:  gcc-c++
 BuildRequires:  make
 
 %description
-fmsx libretro core
+boom3 libretro core
 
 %prep
 %setup -q
 
 %build
+cd neo
 make
 
 %install
 mkdir -p %{buildroot}%{_libdir}/libretro
-cp fmsx_libretro.so %{buildroot}%{_libdir}/libretro
+cp neo/boom3_libretro.so %{buildroot}%{_libdir}/libretro
 
 %files
 %dir %{_libdir}/libretro
-%{_libdir}/libretro/fmsx_libretro.so
+%{_libdir}/libretro/boom3_libretro.so
 
 %changelog

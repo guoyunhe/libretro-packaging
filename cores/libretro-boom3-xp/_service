@@ -1,8 +1,8 @@
 <services>
   <service name="tar_scm" mode="localonly">
     <param name="scm">git</param>
-    <param name="url">https://github.com/libretro/dhewm3-libretro.git</param>
-    <param name="filename">libretro-dhewm3-xp</param>
+    <param name="url">https://github.com/libretro/boom3.git</param>
+    <param name="filename">libretro-boom3-xp</param>
     <param name="revision">master</param>
     <param name="versionformat">0~git%cd</param>
     <param name="changesgenerate">enable</param>

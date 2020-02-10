@@ -1,5 +1,5 @@
 #
-# spec file for package libretro-bsnes2014
+# spec file for package libretro-smsplus
 #
 # Copyright (c) 2020 SUSE LLC
 #
@@ -16,10 +16,10 @@
 #
 
 
-Name:           libretro-bsnes2014
+Name:           libretro-smsplus
 Version:        1.0
 Release:        0
-Summary:        bsnes2014 libretro core
+Summary:        smsplus libretro core
 License:        GPL-3.0
 URL:            http://www.retroarch.com
 Source:         %{name}-%{version}.tar.xz
@@ -28,20 +28,20 @@ BuildRequires:  gcc-c++
 BuildRequires:  make
 
 %description
-bsnes2014 libretro core
+smsplus libretro core
 
 %prep
 %setup -q
 
 %build
-make | bsnes2014_accuracy:profile=accuracy bsnes2014_balanced:profile=balanced bsnes2014_performance:profile=performance
+make -f Makefile.libretro
 
 %install
 mkdir -p %{buildroot}%{_libdir}/libretro
-cp bsnes2014_libretro.so %{buildroot}%{_libdir}/libretro
+cp smsplus_libretro.so %{buildroot}%{_libdir}/libretro
 
 %files
 %dir %{_libdir}/libretro
-%{_libdir}/libretro/bsnes2014_libretro.so
+%{_libdir}/libretro/smsplus_libretro.so
 
 %changelog

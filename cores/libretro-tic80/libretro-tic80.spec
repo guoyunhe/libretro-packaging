@@ -37,7 +37,7 @@ tic80 libretro core
 cd builddir
 mkdir build
  cd build
-cmake .. -DBUILD_SOKOL=OFF -DBUILD_SDL=OFF -BUILD_DEMO_CARTS=OFF -DBUILD_LIBRETRO=ON
+cmake .. -DBUILD_PLAYER=OFF -DBUILD_SOKOL=OFF -DBUILD_SDL=OFF -BUILD_DEMO_CARTS=OFF -DBUILD_LIBRETRO=ON
 make
 
 %install

@@ -1,7 +1,7 @@
 <services>
   <service name="tar_scm" mode="localonly">
     <param name="scm">git</param>
-    <param name="url">https://github.com/markwkidd/FreeIntv.git</param>
+    <param name="url">https://github.com/libretro/FreeIntv.git</param>
     <param name="filename">libretro-freeintv</param>
     <param name="revision">master</param>
     <param name="versionformat">0~git%cd</param>

@@ -1,5 +1,5 @@
 #
-# spec file for package libretro-dhewm3-xp
+# spec file for package libretro-bsnes-hd-beta
 #
 # Copyright (c) 2020 SUSE LLC
 #
@@ -16,10 +16,10 @@
 #
 
 
-Name:           libretro-dhewm3-xp
+Name:           libretro-bsnes-hd-beta
 Version:        1.0
 Release:        0
-Summary:        dhewm3_xp libretro core
+Summary:        bsnes_hd_beta libretro core
 License:        GPL-3.0
 URL:            http://www.retroarch.com
 Source:         %{name}-%{version}.tar.xz
@@ -28,21 +28,21 @@ BuildRequires:  gcc-c++
 BuildRequires:  make
 
 %description
-dhewm3_xp libretro core
+bsnes_hd_beta libretro core
 
 %prep
 %setup -q
 
 %build
-cd neo
-make D3XP=ON
+cd bsnes
+make -f GNUmakefile compiler=g++-7 target=libretro binary=library local=false platform=linux
 
 %install
 mkdir -p %{buildroot}%{_libdir}/libretro
-cp neo/dhewm3_xp_libretro.so %{buildroot}%{_libdir}/libretro
+cp bsnes/bsnes_hd_beta_libretro.so %{buildroot}%{_libdir}/libretro
 
 %files
 %dir %{_libdir}/libretro
-%{_libdir}/libretro/dhewm3_xp_libretro.so
+%{_libdir}/libretro/bsnes_hd_beta_libretro.so
 
 %changelog

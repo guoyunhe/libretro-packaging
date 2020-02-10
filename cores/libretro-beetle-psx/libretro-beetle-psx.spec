@@ -34,7 +34,7 @@ mednafen_psx libretro core
 %setup -q
 
 %build
-make
+make HAVE_LIGHTREC=1
 
 %install
 mkdir -p %{buildroot}%{_libdir}/libretro

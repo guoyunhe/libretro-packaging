@@ -1,8 +1,16 @@
 libretro-beetle-pce
 libretro-bsnes-cplusplus98
+libretro-bsnes-mercury
+libretro-bsnes2014
 libretro-cannonball
 libretro-citra-canary
+libretro-daphne
+libretro-dinothawr
 libretro-fbalpha-neogeo
+libretro-fbalpha2012
 libretro-fbalpha2012-cps1
 libretro-fbalpha2012-cps2
 libretro-fbalpha2012-cps3
+libretro-fbneo
+libretro-fmsx
+libretro-genesis-plus-gx

@@ -1,9 +1,9 @@
 <services>
   <service name="tar_scm" mode="localonly">
     <param name="scm">git</param>
-    <param name="url">https://github.com/libretro/bsnes-libretro.git</param>
-    <param name="filename">libretro-bsnes2014</param>
-    <param name="revision">libretro</param>
+    <param name="url">https://github.com/DerKoun/bsnes-hd.git</param>
+    <param name="filename">libretro-bsnes-hd-beta</param>
+    <param name="revision">master</param>
     <param name="versionformat">0~git%cd</param>
     <param name="changesgenerate">enable</param>
   </service>

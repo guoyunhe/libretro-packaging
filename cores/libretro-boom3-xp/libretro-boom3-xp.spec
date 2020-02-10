@@ -1,5 +1,5 @@
 #
-# spec file for package libretro-dhewm3
+# spec file for package libretro-boom3-xp
 #
 # Copyright (c) 2020 SUSE LLC
 #
@@ -16,10 +16,10 @@
 #
 
 
-Name:           libretro-dhewm3
+Name:           libretro-boom3-xp
 Version:        1.0
 Release:        0
-Summary:        dhewm3 libretro core
+Summary:        boom3_xp libretro core
 License:        GPL-3.0
 URL:            http://www.retroarch.com
 Source:         %{name}-%{version}.tar.xz
@@ -28,21 +28,21 @@ BuildRequires:  gcc-c++
 BuildRequires:  make
 
 %description
-dhewm3 libretro core
+boom3_xp libretro core
 
 %prep
 %setup -q
 
 %build
 cd neo
-make
+make D3XP=ON
 
 %install
 mkdir -p %{buildroot}%{_libdir}/libretro
-cp neo/dhewm3_libretro.so %{buildroot}%{_libdir}/libretro
+cp neo/boom3_xp_libretro.so %{buildroot}%{_libdir}/libretro
 
 %files
 %dir %{_libdir}/libretro
-%{_libdir}/libretro/dhewm3_libretro.so
+%{_libdir}/libretro/boom3_xp_libretro.so
 
 %changelog
